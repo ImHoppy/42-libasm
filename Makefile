@@ -1,11 +1,11 @@
 NAME 	= libasm.a
-SRCS 	= ft_strlen.s 
-SRCS_B 	= ft_.s 
+SRCS 	= ft_strlen.s
+SRCS_B 	=
 OBJS 	= ${SRCS:.s=.o}
 OBJS_B	= ${SRCS_B:.s=.o}
 
 AS = nasm
-ASFLAGS =
+ASFLAGS = -f elf64
 RM = rm -f
 
 LD = ar
@@ -13,7 +13,7 @@ LDFLAGS = rcs
 
 .s.o:
 	@echo Compiling.. $<
-	${AS} ${ASFLAGS} -I. -c $< -o ${<:.s=.o}
+	${AS} ${ASFLAGS} $< -o ${<:.s=.o}
 
 $(NAME): $(OBJS)
 	@echo Creating library.. ${NAME}
@@ -22,7 +22,7 @@ $(NAME): $(OBJS)
 all: ${NAME}
 	@echo Done.
 
-bonus: ${OBJS} ${OBJS_B} 
+bonus: ${OBJS} ${OBJS_B}
 	@echo Bonus..
 	${LD} ${LDFLAGS} ${NAME} $^
 
@@ -35,7 +35,7 @@ clean:
 fclean: clean
 	@echo Deleting.. ${NAME}
 	@${RM} ${NAME}
-	
+
 re: fclean all
 
 .PHONY: all clean fclean re bonus
