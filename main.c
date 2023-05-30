@@ -1,6 +1,5 @@
 int ft_strlen(const char *);
 char *ft_strcpy(char *, const char *);
-char *ft_strcpy(char *, const char *);
 int ft_strcmp(const char *, const char *);
 
 #include <stdio.h>
