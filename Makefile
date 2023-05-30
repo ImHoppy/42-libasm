@@ -1,7 +1,7 @@
 NAME 	= libasm.a
 SRCS 	= ft_strlen.s \
 ft_strcpy.s \
-ft_strcmp
+ft_strcmp.s
 SRCS_B 	=
 OBJS 	= ${SRCS:.s=.o}
 OBJS_B	= ${SRCS_B:.s=.o}
