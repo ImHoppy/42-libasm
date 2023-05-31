@@ -5,14 +5,15 @@ extern __errno_location
 
 ft_write:
 	mov		rax, 1
-	syscall 								; Call sus_write, return errno in negative.
+	syscall 								; Call sus_write, return errno in negative or number of written bytes
 	cmp		rax, 0							; Compare return of sys_write with 0
 	jl		return_error					; Jump to return_error if rax < 0
 	ret										; return sys_write output
 
 return_error:
 	mov		r8, rax							; Save errno
-	call	__errno_location wrt ..plt		; Get ptr of errno, "wrt ..plt" alow write on readonly variale
+	call	__errno_location wrt ..plt		; Get ptr of errno.
+											; "wrt ..plt" set errno as dynamic address, this allow us to get a read/write ptr
 	neg		r8								; set errno as positive
 	mov		[rax], r8						; Set return value of write into *errno
 	mov		rax, -1							; return -1
