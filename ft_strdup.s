@@ -7,6 +7,7 @@ extern malloc
 ft_strdup:
 	push	rdi					; save str for later
 	call	ft_strlen			; get length of str
+	inc		rax					; len + 1 for end \0
 	mov		rdi, rax			; rdi = str length
 	call	malloc wrt ..plt	; malloc(rdi)
 	cmp		rax, 0				; if malloc return == NULL
