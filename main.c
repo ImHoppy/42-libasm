@@ -2,12 +2,14 @@
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
+#include <stdlib.h>
 
 int ft_strlen(const char *);
 char *ft_strcpy(char *, const char *);
 int ft_strcmp(const char *, const char *);
 ssize_t ft_write(int fd, const void *buf, size_t count);
 ssize_t ft_read(int fd, void *buf, size_t count);
+char *ft_strdup(const char *s);
 
 void test_ft_write(int fd, char *b, size_t len)
 {
@@ -36,6 +38,11 @@ void test_ft_read(int fd, char *buf, size_t count)
 int main()
 {
 	const char *a = "Hello world!";
+	char *new = ft_strdup(a);
+	printf("%p %p %s\n", a, new, new);
+	free(new);
+	return 0;
+
 	char dst[20] = {};
 	const char *b = ft_strcpy(dst, a);
 	printf("dst = %s %s\n", dst, b);
