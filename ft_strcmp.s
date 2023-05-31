@@ -1,20 +1,20 @@
 global ft_strcmp
 
 ft_strcmp: ; rdi ; rsi
-	mov		al, BYTE [rdi]	; Seperate each byte of rdi in al
-	mov		bl, BYTE [rsi]	; Seperate each byte of rsi in bl
-	cmp		al, 0			; Check if al is not null
+	mov		r8b, BYTE [rdi]	; Seperate each byte of rdi in r8b
+	mov		r9b, BYTE [rsi]	; Seperate each byte of rsi in r9b
+	cmp		r8b, 0			; Check if r8b is not null
 	je		return
-	cmp		bl, 0			; Check if al is not null
+	cmp		r9b, 0			; Check if r8b is not null
 	je		return
-	cmp		al, bl			; If al - bl is != of 0
+	cmp		r8b, r9b			; If r8b - r9b is != of 0
 	jne		return
 	inc		rdi				; Increment rdi of one byte
 	inc		rsi				; Increment rsi of one byte
 	jmp		ft_strcmp		; Loop until *rdi or *rsi is null
 
 return:
-	movzx	rax, al			; Convert al (8 bits to 64 bits) to return register
-	movzx	r8, bl			; Convert bl (8 bits to 64 bits) to trash register
-	sub		rax, r8			; Subtract al with bl and store return value into rax
+	movzx	rax, r8b			; Convert r8b (8 bits to 64 bits) to return register
+	movzx	r10, r9b			; Convert r9b (8 bits to 64 bits) to trash register
+	sub		rax, r10			; Subtract r8b with r9b and store return value into rax
 	ret
