@@ -2,25 +2,18 @@ global ft_list_push_front
 
 extern malloc
 
+; t_list = { .data = void*, .next = t_list* }
+
 ft_list_push_front: ; rdi = t_list **begin_list, rsi = void *data
-	cmp		rdi, 0
-	je		init
-	call	alloc_list
-	mov		[rax+8], [rdi]
-
-init:
-	call	alloc_list
-	call	exit
-
-alloc_list:
 	push	rdi
-	mov		rdi, 1
-	call	malloc
-	cmp		rax, 0
-	je		exit
+	mov		rdi, 16				; rdi = sizeof(t_list) = 16
+	call	malloc wrt ..plt
 	pop		rdi
-	mov		[rax], rsi		; set data
-	mov		[rax+8], 0		; set next
+	cmp		rax, 0
+	je		return
+	mov		[rax], rsi			; new.data = data
+	mov		rcx, [rdi]			; rcx = *begin_list
+	mov		[rax+8], rcx		; new.next = *begin_list
 
-exit:
+return:
 	ret
