@@ -41,7 +41,6 @@ int main()
 	char *new = ft_strdup(a);
 	printf("%p %p %s\n", a, new, new);
 	free(new);
-	return 0;
 
 	char dst[20] = {};
 	const char *b = ft_strcpy(dst, a);

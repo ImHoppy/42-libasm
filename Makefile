@@ -47,6 +47,9 @@ fclean: clean
 test: all
 	gcc main.c -o main -g3 -L. -lasm
 
+test_bonus: bonus
+	gcc main_bonus.c -o main_bonus -g3 -L. -lasm
+
 re: fclean all
 
 .DEFAULT_GOAL = all
