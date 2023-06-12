@@ -1,12 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct s_list
 {
-	void *data;
+	char *data;
 	struct s_list *next;
 } t_list;
 
 void ft_list_push_front(t_list **, void *);
+int ft_list_size(t_list *begin_list);
 
 void printf_list(t_list *list)
 {
@@ -22,27 +25,33 @@ int main()
 	t_list list;
 	t_list list_next;
 	t_list list_last;
-	list.data = ft_strdup("toto");
+	list.data = strdup("toto");
 	list.next = &list_next;
-	list_next.data = ft_strdup("bar");
+	list_next.data = strdup("bar");
 	list_next.next = &list_last;
-	list_last.data = ft_strdup("monkaS");
+	list_last.data = strdup("monkaS");
 	list_last.next = NULL;
 
-	t_list *list_parent = &list;
-
-	printf("\n--ft_list_sort\n");
-	ft_list_push_front(&list_parent, strdup("zwxy"));
-	ft_list_push_front(&list_parent, strdup("toto"));
-	ft_list_push_front(&list_parent, strdup("0123456"));
-	ft_list_push_front(&list_parent, strdup("barbar"));
-	ft_list_push_front(&list_parent, strdup("rooooom"));
-	ft_list_push_front(&list_parent, strdup("lol"));
-	ft_list_push_front(&list_parent, strdup("tortor"));
-	ft_list_push_front(&list_parent, strdup("mdr"));
-	ft_list_push_front(&list_parent, strdup("0547"));
-	ft_list_push_front(&list_parent, strdup("000"));
-	ft_list_push_front(&list_parent, strdup("zzz"));
+	int size = ft_list_size(&list);
+	printf_list(&list);
+	printf("new list size: %d \n", size);
+	return 0;
+	printf("\n--ft_list_push_front\n");
+	t_list *push_test = &list;
+	ft_list_push_front(&push_test, strdup("toto"));
+	printf("added: `%s` (next: %p)\n", push_test->data, push_test->next);
+	printf("new list size: %d (%d)\n", ft_list_size(push_test), 4);
+	free(list.data);
+	free(push_test->data);
+	free(push_test);
+	push_test = NULL;
+	ft_list_push_front(&push_test, strdup("barbar"));
+	printf("added: `%s` (s%p : n%p)\n", push_test->data, push_test, push_test->next);
+	ft_list_push_front(&push_test, NULL);
+	printf("added: `%s` (s%p : n%p)\n", push_test->data, push_test, push_test->next);
+	free(push_test->next);
+	push_test->next = NULL;
+	ft_list_push_front(&push_test, strdup("toto_r"));
+	printf("added: `%s` (s%p : n%p)\n", push_test->data, push_test, push_test->next);
 	printf("-done\n");
-	printf_list(list_parent);
 }
