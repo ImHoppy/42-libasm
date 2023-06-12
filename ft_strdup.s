@@ -4,7 +4,7 @@ extern ft_strlen
 extern ft_strcpy
 extern malloc
 
-ft_strdup:
+ft_strdup:						; rdi = src
 	push 	rsi					; Push rsi for not causing bug in parent caller
 	push	rdi					; save str for later
 	call	ft_strlen			; get length of str
@@ -16,11 +16,11 @@ ft_strdup:
 	mov		rdi, rax			; rdi = new_str
 	pop		rsi					; rsi = str
 	call	ft_strcpy			; ft_strcpy(rdi, rsi)
-	pop		rsi
+	pop		rsi					; Clean up
 	ret
 
 failure:
-	pop		rsi					; clean
 	pop		rdi					; clean
+	pop		rsi					; clean
 	mov		rax, 0				; retrn 0
 	ret
