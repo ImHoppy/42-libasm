@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <stdlib.h>
+#include "colors.h"
 
 int ft_strlen(const char *);
 char *ft_strcpy(char *, const char *);
