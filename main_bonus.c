@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define CRESET "\e[0m"
+
+#define BLK "\e[0;30m"
+#define RED "\e[0;31m"
+#define GRN "\e[0;32m"
+#define YEL "\e[0;33m"
+#define BLU "\e[0;34m"
+#define MAG "\e[0;35m"
+#define CYN "\e[0;36m"
+#define WHT "\e[0;37m"
+
 typedef struct s_list
 {
 	char *data;
@@ -13,12 +24,19 @@ int ft_list_size(t_list *begin_list);
 
 void printf_list(t_list *list)
 {
+	int i = 0;
 	while (list)
 	{
-		printf("; %s\n", list->data);
+		printf(YEL "%d:" GRN " %s\n" CRESET,
+			   i, list->data);
 		list = list->next;
+		i++;
 	}
 }
+
+#define COLOR_VALUE(S) "`" GRN S CRESET "`"
+#define PRINT_ADD_LIST(ELEM) printf("added: " COLOR_VALUE("%s") " (current=" COLOR_VALUE("%p") " : next=" COLOR_VALUE("%p") ")\n", \
+									ELEM->data, ELEM, ELEM->next)
 
 int main()
 {
@@ -32,26 +50,24 @@ int main()
 	list_last.data = strdup("monkaS");
 	list_last.next = NULL;
 
-	int size = ft_list_size(&list);
-	printf_list(&list);
-	printf("new list size: %d \n", size);
-	return 0;
-	printf("\n--ft_list_push_front\n");
+	printf(BLU "\n# ft_list_push_front\n" CRESET);
+	printf(BLK "## default list\n" CRESET);
 	t_list *push_test = &list;
-	ft_list_push_front(&push_test, strdup("toto"));
-	printf("added: `%s` (next: %p)\n", push_test->data, push_test->next);
-	printf("new list size: %d (%d)\n", ft_list_size(push_test), 4);
+	ft_list_push_front(&push_test, strdup("Bouuuh"));
+	PRINT_ADD_LIST(push_test);
+	printf("new list size: %d\n", ft_list_size(push_test));
+	printf_list(push_test);
+	// Clean old list
 	free(list.data);
 	free(push_test->data);
 	free(push_test);
 	push_test = NULL;
+
+	printf(BLK "\n## to empty list\n" CRESET);
 	ft_list_push_front(&push_test, strdup("barbar"));
-	printf("added: `%s` (s%p : n%p)\n", push_test->data, push_test, push_test->next);
+	PRINT_ADD_LIST(push_test);
+	printf(BLK "### Push null\n" CRESET);
 	ft_list_push_front(&push_test, NULL);
-	printf("added: `%s` (s%p : n%p)\n", push_test->data, push_test, push_test->next);
-	free(push_test->next);
-	push_test->next = NULL;
-	ft_list_push_front(&push_test, strdup("toto_r"));
-	printf("added: `%s` (s%p : n%p)\n", push_test->data, push_test, push_test->next);
-	printf("-done\n");
+	PRINT_ADD_LIST(push_test);
+	printf_list(push_test);
 }
