@@ -5,7 +5,8 @@ ft_strcmp.s \
 ft_write.s \
 ft_read.s \
 ft_strdup.s
-SRCS_B 	= ft_list_push_front_bonus.s
+SRCS_B 	= ft_list_push_front_bonus.s \
+ft_list_size_bonus.s
 OBJS 	= ${SRCS:.s=.o}
 OBJS_B	= ${SRCS_B:.s=.o}
 
