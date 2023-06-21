@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "colors.h"
 
+#define COLOR_VALUE(S) "`" GRN S CRESET "`"
+
 int ft_strlen(const char *);
 char *ft_strcpy(char *, const char *);
 int ft_strcmp(const char *, const char *);
@@ -38,10 +40,18 @@ void test_ft_read(int fd, char *buf, size_t count)
 
 int main()
 {
-	const char *a = "Hello world!";
-	char *new = ft_strdup(a);
-	printf("%p %p %s\n", a, new, new);
-	free(new);
+	printf(BLU "\n# ft_strdup\n" CRESET);
+	{
+		const char *old = "Hello world!";
+		char *new = ft_strdup(old);
+		printf(
+			"old: (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ")\n"
+			"new: (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ")\n",
+			old, old,
+			new, new
+		);
+		free(new);
+	}
 
 	char dst[20] = {};
 	const char *b = ft_strcpy(dst, a);
