@@ -38,39 +38,41 @@ void test_ft_read(int fd, char *buf, size_t count)
 	errno = 0;
 }
 
+#define PRINT_OLD_NEW(OLD_LABEL, NEW_LABEL, OLD, NEW) printf(OLD_LABEL ": (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ", l" COLOR_VALUE("%d") ")\n" NEW_LABEL ": (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ", l" COLOR_VALUE("%d") ")\n", \
+															 OLD, OLD, ft_strlen(OLD), NEW, NEW, ft_strlen(NEW))
+
+#define PRINT_STRCMP(L, R) printf("ft_strcmp = " COLOR_VALUE("%d") "; strcmp = " COLOR_VALUE("%d") "\n", \
+								  ft_strcmp(L, R), strcmp(L, R))
+
 int main()
 {
+	const char *hw = "Hello world!";
 	printf(BLU "\n# ft_strdup\n" CRESET);
-	{
-		const char *old = "Hello world!";
-		char *new = ft_strdup(old);
-		printf(
-			"old: (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ")\n"
-			"new: (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ")\n",
-			old, old,
-			new, new
-		);
-		free(new);
-	}
+	char *new = ft_strdup(hw);
+	PRINT_OLD_NEW("old", "new", hw, new);
+	free(new);
 
-	char dst[20] = {};
-	const char *b = ft_strcpy(dst, a);
-	printf("dst = %s %s\n", dst, b);
-	printf("len = %d\n", ft_strlen(dst));
+	printf(BLU "\n# ft_strcpy\n" CRESET);
+	char *dst = malloc(ft_strlen(hw) * sizeof(char));
+	const char *cpy = ft_strcpy(dst, hw);
+	PRINT_OLD_NEW("src", "dst", hw, dst);
 
-	getchar();
-	printf("ft_strcmp = %d strcmp = %d\n", ft_strcmp(a, b), strcmp(a, b));
-	printf("ft_strcmp = %d strcmp = %d\n", ft_strcmp(a, "Hello world  "), strcmp(a, "Hello world  "));
+	printf(BLU "\n# ft_strcmp\n" CRESET);
+	printf(BLK "\n## Compare with cpy\n" CRESET);
+	PRINT_STRCMP(hw, cpy);
+	printf(BLK "\n## Compare with one char different\n" CRESET);
+	PRINT_STRCMP(hw, "Hello world  ");
+	PRINT_STRCMP("Hello world#", "Hello world$");
 
-	getchar();
-	test_ft_write(4, "", 1);
-	test_ft_write(2, "Hi\n", 3);
-	test_ft_write(2, NULL, 1);
+	// getchar();
+	// test_ft_write(4, "", 1);
+	// test_ft_write(2, "Hi\n", 3);
+	// test_ft_write(2, NULL, 1);
 
-	getchar();
-	char buf[64];
-	test_ft_read(3, buf, 63);
-	test_ft_read(0, buf, 63);
-	test_ft_read(0, NULL, 63);
+	// getchar();
+	// char buf[64];
+	// test_ft_read(3, buf, 63);
+	// test_ft_read(0, buf, 63);
+	// test_ft_read(0, NULL, 63);
 	return 0;
 }
