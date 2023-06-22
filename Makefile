@@ -11,7 +11,8 @@ OBJS 	= ${SRCS:.s=.o}
 OBJS_B	= ${SRCS_B:.s=.o}
 
 AS = nasm
-ASFLAGS = -f elf64 -g -F dwarf
+# ASFLAGS = -f elf64 -g -F dwarf
+ASFLAGS = -f elf64
 RM = rm -f
 
 LD = ar
