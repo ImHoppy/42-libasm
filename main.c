@@ -39,6 +39,8 @@ void test_ft_read(int fd, char *buf, size_t count)
 int main()
 {
 	const char *hw = "Hello world!";
+	printf("%d\n", ft_strlen(""));
+	printf("%d\n", ft_strlen("Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!"));
 	printf(BLU "\n# ft_strdup\n" CRESET);
 	char *new = ft_strdup(hw);
 	PRINT_OLD_NEW("old", "new", hw, new);

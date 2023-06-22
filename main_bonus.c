@@ -9,8 +9,8 @@ void printf_list(t_list *list)
 	int i = 0;
 	while (list)
 	{
-		printf(YEL "%d:" GRN " %s\n" CRESET,
-			   i, list->data);
+		printf(YEL "%d:" GRN " %s\t%p\n" CRESET,
+			   i, list->data, list);
 		list = list->next;
 		i++;
 	}
