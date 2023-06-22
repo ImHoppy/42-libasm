@@ -45,7 +45,7 @@ int main()
 	t_list *push_test = &list;
 	ft_list_push_front(&push_test, strdup("Bouuuh"));
 	PRINT_ADD_LIST(push_test);
-	printf("new list size: %d\n", ft_list_size(push_test));
+	printf("new list size: " COLOR_VALUE("%d") "\n", ft_list_size(push_test));
 	printf_list(push_test);
 	// Clean old list
 	free(list.data);
@@ -60,4 +60,5 @@ int main()
 	ft_list_push_front(&push_test, NULL);
 	PRINT_ADD_LIST(push_test);
 	printf_list(push_test);
+	printf("new list size: " COLOR_VALUE("%d") "\n", ft_list_size(push_test));
 }
