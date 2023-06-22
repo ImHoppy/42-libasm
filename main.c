@@ -4,13 +4,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include "colors.h"
-
-int ft_strlen(const char *);
-char *ft_strcpy(char *, const char *);
-int ft_strcmp(const char *, const char *);
-ssize_t ft_write(int fd, const void *buf, size_t count);
-ssize_t ft_read(int fd, void *buf, size_t count);
-char *ft_strdup(const char *s);
+#include "libasm.h"
 
 #define PRINT_OLD_NEW(OLD_LABEL, NEW_LABEL, OLD, NEW) printf(OLD_LABEL ": (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ", l" COLOR_VALUE("%d") ")\n" NEW_LABEL ": (s" COLOR_VALUE("%s") ", p" COLOR_VALUE("%p") ", l" COLOR_VALUE("%d") ")\n", \
 															 OLD, OLD, ft_strlen(OLD), NEW, NEW, ft_strlen(NEW))

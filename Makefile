@@ -49,7 +49,7 @@ test: all
 	gcc main.c -o main -g3 -L. -lasm
 
 test_bonus: bonus
-	gcc main_bonus.c -o main_bonus -g3 -L. -lasm
+	gcc main_bonus.c -o main_bonus -g3 -L. -lasm -DBONUS
 
 re: fclean all
 

@@ -2,15 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "colors.h"
-
-typedef struct s_list
-{
-	char *data;
-	struct s_list *next;
-} t_list;
-
-void ft_list_push_front(t_list **, void *);
-int ft_list_size(t_list *begin_list);
+#include "libasm.h"
 
 void printf_list(t_list *list)
 {
