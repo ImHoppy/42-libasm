@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include "colors.h"
 
-#define COLOR_VALUE(S) "`" GRN S CRESET "`"
-
 int ft_strlen(const char *);
 char *ft_strcpy(char *, const char *);
 int ft_strcmp(const char *, const char *);

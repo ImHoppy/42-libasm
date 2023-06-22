@@ -1,4 +1,3 @@
-
 #define CRESET "\e[0m"
 
 #define BLK "\e[0;30m"
@@ -9,3 +8,5 @@
 #define MAG "\e[0;35m"
 #define CYN "\e[0;36m"
 #define WHT "\e[0;37m"
+
+#define COLOR_VALUE(S) "`" GRN S CRESET "`"

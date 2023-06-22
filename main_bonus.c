@@ -24,7 +24,6 @@ void printf_list(t_list *list)
 	}
 }
 
-#define COLOR_VALUE(S) "`" GRN S CRESET "`"
 #define PRINT_ADD_LIST(ELEM) printf("added: " COLOR_VALUE("%s") " (current=" COLOR_VALUE("%p") " : next=" COLOR_VALUE("%p") ")\n", \
 									ELEM->data, ELEM, ELEM->next)
 
